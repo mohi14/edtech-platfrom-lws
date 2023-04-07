@@ -6,15 +6,18 @@ import StudentLogin from "../pages/StudentLogin";
 import StudentRegistration from "../pages/StudentRegistration";
 import StudentLayout from "../layout/StudentLayout";
 import CoursePlayer from "../pages/CoursePlayer";
+import AdminRoutes from "../components/AdminRoutes/AdminRoutes";
+import StudentRoutes from "../components/StudentRoutes/StudentRoutes";
+import PublicRoutes from "../components/PublicRoutes/PublicRoutes";
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <StudentLogin />
+        element: <PublicRoutes><StudentLogin /></PublicRoutes>
     },
     {
         path: "/student-registration",
-        element: <StudentRegistration />
+        element: <PublicRoutes><StudentRegistration /></PublicRoutes>
     },
     {
         path: "/",
@@ -22,13 +25,13 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "/course-player",
-                element: <CoursePlayer />
+                element: <StudentRoutes> <CoursePlayer /></StudentRoutes>
             }
         ]
     },
     {
         path: "/admin",
-        element: <AdminLogin />
+        element: <PublicRoutes><AdminLogin /></PublicRoutes>
     },
     {
         path: "/admin",
@@ -36,7 +39,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "/admin/dashboard",
-                element: <Dashboard />
+                element: <AdminRoutes><Dashboard /></AdminRoutes>
             }
         ]
     }

@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from "../assets/image/learningportal.svg"
 import { useLoginMutation } from '../features/auth/authApi';
+import { useDispatch } from 'react-redux';
+import { userLoggedIn } from '../features/auth/authSlice';
 
 const StudentLogin = () => {
     const [login, { isLoading, isSuccess, isError, error }] = useLoginMutation()
 
     const navigate = useNavigate()
+
+    const dispatch = useDispatch()
 
     const [loginError, setLoginError] = useState("")
 
@@ -29,6 +33,16 @@ const StudentLogin = () => {
                 if (res.data.user.role === 'student') {
                     form.reset()
                     setLoginError("")
+                    localStorage.setItem('auth', JSON.stringify({
+                        accessToken: res.data.accessToken,
+                        user: res.data.user
+                    }))
+
+                    dispatch(userLoggedIn({
+                        accessToken: res.data.accessToken,
+                        user: res.data.user
+                    }))
+
                     navigate("/course-player")
                 }
                 else if (res.data.user.role === 'admin') {
@@ -60,12 +74,18 @@ const StudentLogin = () => {
                         </div>
                     </div>
 
-                    <div className="flex items-center justify-end">
+                    <div className="flex items-center justify-between">
+                        <div className="text-sm">
+                            <Link to="/admin" className="font-medium text-violet-600 hover:text-violet-500">
+                                Admin Login
+                            </Link>
+                        </div>
                         <div className="text-sm">
                             <Link to="/student-registration" className="font-medium text-violet-600 hover:text-violet-500">
                                 Create New Account
                             </Link>
                         </div>
+
                     </div>
                     <div className="flex items-center justify-center">
                         <div className="text-sm">
