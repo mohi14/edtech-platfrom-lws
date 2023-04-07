@@ -9,6 +9,10 @@ import CoursePlayer from "../pages/CoursePlayer";
 import AdminRoutes from "../components/AdminRoutes/AdminRoutes";
 import StudentRoutes from "../components/StudentRoutes/StudentRoutes";
 import PublicRoutes from "../components/PublicRoutes/PublicRoutes";
+import Assignment from "../pages/Assignment";
+import Videos from "../pages/Videos";
+import Quizzes from "../pages/Quizzes";
+import AssignmetMarks from "../pages/AssignmetMarks";
 
 export const router = createBrowserRouter([
     {
@@ -40,7 +44,23 @@ export const router = createBrowserRouter([
             {
                 path: "/admin/dashboard",
                 element: <AdminRoutes><Dashboard /></AdminRoutes>
-            }
+            },
+            {
+                path: "/admin/assignment",
+                element: <AdminRoutes><Assignment /></AdminRoutes>
+            },
+            {
+                path: "/admin/assignment-marks",
+                element: <AdminRoutes><AssignmetMarks /></AdminRoutes>
+            },
+            {
+                path: "/admin/quizzes",
+                element: <AdminRoutes><Quizzes /></AdminRoutes>
+            },
+            {
+                path: "/admin/videos",
+                element: <AdminRoutes><Videos /></AdminRoutes>
+            },
         ]
     }
 

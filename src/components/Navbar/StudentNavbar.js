@@ -1,7 +1,14 @@
 import React from 'react';
 import logo from "../../assets/image/learningportal.svg"
+import { useDispatch } from 'react-redux';
+import { userLoggedOut } from '../../features/auth/authSlice';
 
 const StudentNavbar = () => {
+    const dispatch = useDispatch()
+    const handleLogOut = () => {
+        dispatch(userLoggedOut());
+        localStorage.removeItem("auth");
+    }
     return (
         <nav className="shadow-md">
             <div className="max-w-7xl px-5 lg:px-0 mx-auto flex justify-between py-3">
@@ -10,6 +17,7 @@ const StudentNavbar = () => {
                     <a href="./Leaderboard.html">Leaderboard</a>
                     <h2 className="font-bold">Saad Hasan</h2>
                     <button
+                        onClick={handleLogOut}
                         className="flex gap-2 border border-cyan items-center px-4 py-1 rounded-full text-sm transition-all hover:bg-cyan ">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" className="w-6 h-6">
