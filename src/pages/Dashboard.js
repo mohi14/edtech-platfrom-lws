@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
     return (
-        <section className="py-6 bg-primary">
+        <section className="py-6 bg-primary" style={{ height: "100vh", overflowY: "hidden" }}>
             <div className="mx-auto max-w-7xl px-5 lg:px-0">
                 <div className="px-3 md:lg:xl:px-40  py-20 bg-opacity-10">
                     <div className="grid grid-cols-1 md:grid-cols-2  gap-6 p-8">
