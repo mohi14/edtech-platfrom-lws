@@ -13,6 +13,8 @@ import Assignment from "../pages/Assignment";
 import Videos from "../pages/Videos";
 import Quizzes from "../pages/Quizzes";
 import AssignmetMarks from "../pages/AssignmetMarks";
+import Quiz from "../pages/Quiz";
+import LeaderBoard from "../pages/LeaderBoard";
 
 export const router = createBrowserRouter([
     {
@@ -30,7 +32,15 @@ export const router = createBrowserRouter([
             {
                 path: "/course-player",
                 element: <StudentRoutes> <CoursePlayer /></StudentRoutes>
-            }
+            },
+            {
+                path: "/quiz/:id",
+                element: <StudentRoutes> <Quiz /></StudentRoutes>
+            },
+            {
+                path: "/leader-board",
+                element: <StudentRoutes> <LeaderBoard /></StudentRoutes>
+            },
         ]
     },
     {

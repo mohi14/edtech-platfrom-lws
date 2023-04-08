@@ -1,8 +1,17 @@
 import React from "react";
 import { useGetVideosQuery } from "../../features/adminFeatures/videos/videosApi";
+import { useDispatch, useSelector } from "react-redux";
+import { activeCourse } from "../../features/studentFeatures/courses/courseSlice";
 
 const CourseLists = () => {
   const { data: videos } = useGetVideosQuery();
+  const { course } = useSelector(state => state.courses)
+  const dispatch = useDispatch()
+  console.log(course)
+
+  const handleCourse = (video) => {
+    dispatch(activeCourse(video))
+  }
 
   return (
     <div className="col-span-full lg:col-auto max-h-[570px] overflow-y-auto bg-secondary p-4 rounded-md border border-slate-50/10 divide-y divide-slate-600/30">
@@ -11,7 +20,8 @@ const CourseLists = () => {
         videos.map((video) => (
           <div
             key={video.id}
-            className="w-full flex flex-row gap-2 cursor-pointer hover:bg-slate-900 p-2 py-3"
+            className={`${video.id === course?.id && "bg-[#572ea9]"} w-full flex flex-row gap-2 cursor-pointer hover:bg-slate-900 p-2 py-3`}
+            onClick={() => handleCourse(video)}
           >
             <svg
               fill="none"

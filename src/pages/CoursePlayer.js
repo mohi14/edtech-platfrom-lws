@@ -1,8 +1,12 @@
 import React from "react";
 import ActiveCourse from "../components/ActiveCourse/ActiveCourse";
 import CourseLists from "../components/CourseLists/CourseLists";
+import { useGetVideosQuery } from "../features/adminFeatures/videos/videosApi";
 
 const CoursePlayer = () => {
+  const { data: videos, isLoading, isSuccess } = useGetVideosQuery();
+
+
   return (
     <section
       className="py-6 bg-primary"
